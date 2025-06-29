@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
-
 import logo from "../images/1b3a39f294097ea26db9e58cebfe4b47 1.png";
 import Border from "../images/Border.png";
 import back from "../images/Background.png";
@@ -10,7 +10,7 @@ import Meat from "../images/Icon (1).png";
 import Bakery from "../images/Vector.png";
 import Beverages from "../images/Icon (1).png";
 import { useLocation } from "react-router-dom";
-
+import { AuthContext } from '../Context/AuthContext';
 
 
 const Navbar = () => {
@@ -20,7 +20,14 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [language, setLanguage] = useState("English");
   const [currency, setCurrency] = useState("USD");
-  
+  const {Token , setToken} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function logOut(){
+    setToken(null);
+    localStorage.removeItem('token');
+    navigate('/register');
+  }
 
   useEffect(() => {
     document.documentElement.dir = language === "Arabic" ? "rtl" : "ltr";
@@ -41,15 +48,15 @@ const Navbar = () => {
   }, [searchTerm]);
     const location = useLocation();
 
-  if ( location.pathname === "/login" ||
-  location.pathname === "/register" ) {
+  if ( location.pathname === "login" ||
+  location.pathname === "register" ) {
     return null;
   }
 
-
-
-  return (
-    <div className="w-full">
+  return <>
+  
+  {Token ? 
+  <div className="w-full">
       <div className="bg-teal-600 text-white text-xs sm:text-sm py-2 text-center px-2">
         Due to current circumstances, there may be slight delays in order processing
       </div>
@@ -57,9 +64,9 @@ const Navbar = () => {
       <div className="flex flex-wrap justify-between items-center px-4 sm:px-6 py-4 border-b gap-4">
         <div className="flex justify-between items-center w-full sm:w-auto text-sm text-gray-600">
           <div className="hidden font-inter sm:flex gap-4">
-            <Link to="/About_Us">About Us</Link>
-            <Link to="/Compare">Compare</Link>
-            <Link to="/Wishlist">Wishlist</Link>
+            <Link to="About_Us">About Us</Link>
+            <Link to="Compare">Compare</Link>
+            <Link to="Wishlist">Wishlist</Link>
           </div>
           <button onClick={() => setMenuOpen(!menuOpen)} className="sm:hidden text-xl text-teal-600 ml-auto">
             {menuOpen ? <FaTimes /> : <FaBars />}
@@ -93,6 +100,9 @@ const Navbar = () => {
             <option>USD</option>
             <option>EGP</option>
           </select>
+
+          <Link onClick={ logOut } >Logout</Link>
+        
         </div>
       </div>
 
@@ -126,7 +136,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4 sm:gap-6">
-          <Link to="/Login">
+          <Link onClick={logOut} to="/login">
             <img src={Border} alt="login" className="w-10 h-10 cursor-pointer" />
           </Link>
           <span className="text-gray-800 font-semibold">
@@ -157,34 +167,34 @@ const Navbar = () => {
           </div>
 
           <div className="hidden font-dosis text-xl md:flex gap-6 items-center ml-10">
-            <Link to="./" className="bg-teal-50 text-teal-500 px-3 py-1 rounded-full font-semibold">
+            <Link to="HOME" className="bg-teal-50 text-teal-500 px-3 py-1 rounded-full font-semibold">
               HOME
               <svg className="w-3 h-3 inline-block ml-1 -mt-0.5" viewBox="0 0 10 6">
                 <path d="M1 1l4 4 4-4" fill="currentColor" />
               </svg>
             </Link>
-            <Link to="/Shop" className="hover:text-teal-500 transition">SHOP</Link>
-            <Link to="/MEATS_SEAFOOD" className="hover:text-teal-500 transition flex items-center gap-1">
+            <Link to="SHOP" className="hover:text-teal-500 transition">SHOP</Link>
+            <Link to="MEATS_SEAFOOD" className="hover:text-teal-500 transition flex items-center gap-1">
               <img src={Meat} alt="meat" className="w-4 h-4" />
               MEATS & SEAFOOD
             </Link>
-            <Link to="/BAKERY" className="hover:text-teal-500 transition flex items-center gap-1">
+            <Link to="BAKERY" className="hover:text-teal-500 transition flex items-center gap-1">
               <img src={Bakery} alt="bakery" className="w-4 h-4" />
               BAKERY
             </Link>
-            <Link to="/BEVERAGES" className="hover:text-teal-500 transition flex items-center gap-1">
+            <Link to="BEVERAGES" className="hover:text-teal-500 transition flex items-center gap-1">
               <img src={Beverages} alt="beverages" className="w-4 h-4" />
               BEVERAGES
             </Link>
-            <Link to="/BLOG" className="hover:text-teal-500 transition">BLOG</Link>
-            <Link to="/CONTACT" className="hover:text-teal-500 transition">CONTACT</Link>
+            <Link to="BLOG" className="hover:text-teal-500 transition">BLOG</Link>
+            <Link to="contactUs" className="hover:text-teal-500 transition">CONTACT</Link>
           </div>
         </div>
       </div>
 
       {menuOpen && (
         <div className="md:hidden mt-4 flex flex-col gap-3 text-teal-700 px-4">
-          <Link to="./">HOME</Link>
+          <Link to="/home">HOME</Link>
           <Link to="/About_Us">About Us</Link>
           <Link to="/Compare">Compare</Link>
           <Link to="/Wishlist">Wishlist</Link>
@@ -193,11 +203,43 @@ const Navbar = () => {
           <Link to="/BAKERY">BAKERY</Link>
           <Link to="/BEVERAGES">BEVERAGES</Link>
           <Link to="/BLOG">BLOG</Link>
-          <Link to="/CONTACT">CONTACT</Link>
+          <Link to="contactUs">CONTACT</Link>
         </div>
       )}
-    </div>
-  );
+  </div> : <>
+
+      
+  <div className="w-full">
+      <div className="bg-teal-600 text-white text-xs sm:text-sm py-2 text-center px-2">
+        Due to current circumstances, there may be slight delays in order processing
+      </div>
+
+      <div className="flex flex-wrap justify-between items-center px-4 sm:px-6 py-4 border-b gap-4">
+        <div className="flex justify-between items-center w-full sm:w-auto text-sm text-gray-600">
+          <div className="hidden font-inter sm:flex gap-4">
+
+            <Link to="/home">Home</Link>
+            <Link to="About_Us">About Us</Link>
+
+          </div>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="sm:hidden text-xl text-teal-600 ml-auto">
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2 sm:gap-4 text-sm text-gray-600 ml-auto">
+
+          <Link className='text-black-600 text-lg font-semibold transition-transform duration-300 hover:scale-110 hover:text-green-600' to="login">Login</Link>
+          <Link className='text-black-600 text-lg font-semibold transition-transform duration-300 hover:scale-110 hover:text-green-600' to="register">Register</Link>
+        </div>
+      </div>
+
+  </div>
+  
+  
+  </>  }
+  
+  </>;
 };
 
 export default Navbar;

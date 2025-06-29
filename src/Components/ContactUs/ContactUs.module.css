@@ -1,0 +1,120 @@
+.contactUs_contant1{
+  text-align: center;
+  color: #202435;
+  max-width: 460px;
+}
+.contactUs_contant1_p1{
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+  
+}
+.contactUs_contant1_p2Y{
+  font-weight: 500;
+  font-size: 14px;
+  width: 95%;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+}
+.contactUs_contant1_p2{
+  max-width: 452px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+}
+.contactUs_contant2{
+  padding-top: 25px; 
+}
+.ButtomContact{
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19.5px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+}
+.SendUsDiv{
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #EDEEF5;
+  border-radius: 7px;
+}
+.contactUs_D1{
+  width: 400px;
+  height: 202px;
+  margin: 0 15px 0 15px;
+  background-color: #F3F3F6;
+  border: 1px solid #EDEEF5 ;
+  padding: 31px 0 31px 0;
+  border-radius: 7px;
+
+}
+
+.PLogo{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+
+}
+.plast{
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter, sans-serif;
+}
+.contactUs_contant2 {
+  display: flex;
+  
+  justify-content: center;
+  text-align: center;
+  padding-top: 25px;
+  gap: 20px; 
+}
+
+.contactUs_D1 {
+  margin: 10px;
+}
+
+
+
+
+
+@media (max-width: 950px) {
+  .contactUs_contant2{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 25px;
+    gap: 20px; 
+  }
+  .contactUs_D1 {
+    width: calc(50% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactUs_D1 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+}
+
+

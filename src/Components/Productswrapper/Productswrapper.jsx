@@ -9,7 +9,7 @@ export default function Productswrapper() {
   return (
     <div className="products-wrapper flex justify-between items-center flex-wrap gap-4 ">
     
-        
+    
         <div style={{ backgroundImage: `url(${img1})` }} 
             className='w-[370px] h-[218.63px] flex flex-col gap-3
             justify-center pl-4 rounded-lg  mx-auto'>

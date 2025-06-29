@@ -5,7 +5,7 @@ import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { PRODUCTS } from "../constant/constants";
+import { PRODUCTS } from "../../constant/constants";
 
 import { QueryClient, useQuery } from "@tanstack/react-query";
 
@@ -19,6 +19,7 @@ const FeaturedProducts = () => {
     queryKey: ["products"],
     queryFn: fetchProductsData,
   });
+
   if (isLoading)
     return (
       <div className="flex items-center justify-center h-60 text-gray-600">
