@@ -7,10 +7,12 @@ import FeaturedProducts from "./components/FeaturedProducts";
 import Newsletter from "./components/Newsletter";
 import Navbar from "./Components/Navbar/Navbar";
 import Slideshow from './Components/Slideshow/Slideshow';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
+      <ToastContainer/>
       <Navbar />
       <Slideshow />
       <ProductSlider />

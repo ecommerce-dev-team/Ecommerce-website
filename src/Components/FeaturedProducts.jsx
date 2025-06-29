@@ -1,6 +1,5 @@
 import "swiper/css";
 import "swiper/css/navigation";
-
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 import { Navigation } from "swiper/modules";

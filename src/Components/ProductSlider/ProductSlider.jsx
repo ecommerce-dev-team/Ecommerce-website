@@ -4,38 +4,36 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { useSelector } from 'react-redux';
-
-
+import { useContext } from 'react';
+import { ShopContext } from '../Context/Context';
+import { RotatingLines } from "react-loader-spinner";
 
 
 
 export default function ProductSlider() {
 
-  const {products,isloading,error} = useSelector((state)=>state.product);
- 
+  const {products,isLoading}=useContext(ShopContext);
 
-  
-  
-  
+ 
 
   return (
     <div className='productslider'>
-      <div>
-        {
-          error &&
-          (
-               <button className='bg-red-400 h-12 w-full text-2xl '>Faild to fetch</button>
-
-          )
-       
-        }
-
-      </div>
-
+    
       {
-        isloading ? <p className='text-bold text-xl'>loading ... </p>  :
-               <Swiper
+        isLoading ?
+          <RotatingLines
+            visible={true}
+            height="96"
+            width="96"
+            color="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            ariaLabel="rotating-lines-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+          :
+     <Swiper
      
           breakpoints={{
         380:{
@@ -66,15 +64,14 @@ export default function ProductSlider() {
    
     >
      
-     
         {
          products &&
           products.map((item,index)=>{
             return(
              <SwiperSlide key={index} >
-                  <div className='flex justify-center border-1 border-[#E4E5EE] p-2'>
+                  <div className='flex justify-center border-1 border-[#E4E5EE] p-4'>
                       <div className='w-[234px] h-[241px]  flex flex-col items-center justify-center gap-3 '>
-                          <img src={item.images[0]} className='w-[145px] h-[145px]' alt='product-image'></img>
+                          <img src={item.images[0]} className='w-[145px] h-[145px] hover:scale-105' alt='product-image'></img>
                           <p className='font-bold'>{item.title}</p>
                           <p>{item.quantity} items</p>
                       </div>
@@ -86,12 +83,10 @@ export default function ProductSlider() {
 
         }
       
-    </Swiper>
-      }
+     </Swiper>
+}
    
-    
-    
-
+  
     </div>
 
   )

@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import arrowright from '../images/arrowright.png';
 import staricon from '../images/star.png';
-import { useSelector ,useDispatch } from 'react-redux';
-import { getproducts } from '../Store/Producslice';
+import { ShopContext } from '../Context/Context';
+import { RotatingLines } from 'react-loader-spinner';
+
 
 
 export default function BestSellers() {
     const [view,setView]=useState(false)
-    const dispatch = useDispatch()
-    const {products,isloading}=useSelector((state)=>state.product)
+    const {products,isLoading} = useContext(ShopContext);
 
     
-useEffect(()=>{
-    dispatch(getproducts())
-
-},[dispatch])
-  
-
-let Allproducts = view ? products : products && products.slice(0,8) 
+    const Allproducts = view ? products : products && products.slice(0,8) 
     
   return (
     <div className='BestSellers'>
@@ -27,9 +21,9 @@ let Allproducts = view ? products : products && products.slice(0,8)
                 <p className='font-bold text-xl'>Best Sellers</p>
                 <p className='text-[var(#9B9BB4)]'>Do not miss the current offers until the end of month.</p>
             </div>
-            <div className=' text-[var(#9B9BB4)] w-[112.3px] h-[34px] flex justify-between items-center border-1 border-gray-400 rounded-full p-2'>
+            <div className=' text-[var(#9B9BB4)] w-[112.3px] h-[34px] flex justify-between items-center border-1 border-gray-400 rounded-full p-2  hover:bg-green-900 hover:text-amber-50'>
                 <button onClick={()=>setView(!view)} className='cursor-pointer max-sm:text-[12px] font-bold'>
-                    {view ? 'Hide' : "view All"}
+                    {view ? 'hide' : "view All"}
                 </button>
                 <img src={arrowright} alt='arrow-right' className='w-[15px] h-[15px] '></img>
             </div>
@@ -37,7 +31,19 @@ let Allproducts = view ? products : products && products.slice(0,8)
 
         <div>
             {
-                isloading ? <p className='text-bold text-xl'>loading ... </p>: 
+                isLoading ?
+                  <RotatingLines
+                            visible={true}
+                            height="96"
+                            width="96"
+                            color="grey"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            ariaLabel="rotating-lines-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                          />
+                          : 
                 <div className='grid lg:grid-cols-5  max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-4'>
                 {
                     products &&
@@ -53,7 +59,7 @@ let Allproducts = view ? products : products && products.slice(0,8)
                              '>
                                 <p className='text-[#FFFFFF] text-[12px] font-bold'>22%</p>
                             </div>
-                            <img src={item.images[0]} alt='product-image'></img>
+                            <img src={item.images[0]} alt='product-image' ></img>
                             <p className='text-sm font-semibold'>{item.title}</p>
                             <p className='font-bold text-[#00B853]'>In stock</p>
                             <div className='flex items-center gap-2'>
@@ -94,9 +100,7 @@ let Allproducts = view ? products : products && products.slice(0,8)
               
                
             </div>
-            }
-            
-
+}
             
 
         </div>
