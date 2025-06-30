@@ -33,7 +33,7 @@ const { data, isLoading} = useQuery({
 
 
 
-const products = data ? data.data : "";
+const products = data ? data.data : null;
 
 const contextvalue ={products,isLoading}
     return (
