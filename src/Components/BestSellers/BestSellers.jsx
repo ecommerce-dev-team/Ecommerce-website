@@ -11,7 +11,9 @@ export default function BestSellers() {
     const {products,isLoading} = useContext(ShopContext);
 
     
-    const Allproducts = view ? products : products && products.slice(0,8) 
+   const Allproducts = Array.isArray(products)
+  ? (view ? products : products.slice(0, 8))
+  : []; 
     
   return (
     <div className='BestSellers'>

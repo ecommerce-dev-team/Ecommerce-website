@@ -65,18 +65,18 @@ export default function ProductSlider() {
     >
      
         {
-         products &&
-          products.map((item,index)=>{
-            return(
-             <SwiperSlide key={index} >
-                  <div className='flex justify-center border-1 border-[#E4E5EE] p-4'>
-                      <div className='w-[234px] h-[241px]  flex flex-col items-center justify-center gap-3 '>
-                          <img src={item.images[0]} className='w-[145px] h-[145px] hover:scale-105' alt='product-image'></img>
-                          <p className='font-bold'>{item.title}</p>
-                          <p>{item.quantity} items</p>
-                      </div>
-                </div>
-              </SwiperSlide>
+          Array.isArray(products) &&
+            products.map((item, index)=>{
+              return(
+              <SwiperSlide key={index} >
+                    <div className='flex justify-center border-1 border-[#E4E5EE] p-4'>
+                        <div className='w-[234px] h-[241px]  flex flex-col items-center justify-center gap-3 '>
+                            <img src={item.images[0]} className='w-[145px] h-[145px] hover:scale-105' alt='product-image'></img>
+                            <p className='font-bold'>{item.title}</p>
+                            <p>{item.quantity} items</p>
+                        </div>
+                  </div>
+                </SwiperSlide>
             )
 
           })
