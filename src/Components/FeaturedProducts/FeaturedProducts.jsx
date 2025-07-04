@@ -8,6 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { PRODUCTS } from "../../constant/constants";
 
 import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartProvider";
+import { NavLink } from "react-router-dom";
 
 const fetchProductsData = async () => {
   const response = await axios.get(`${PRODUCTS.GET_ALL}?limit=20`);
@@ -15,6 +18,7 @@ const fetchProductsData = async () => {
 };
 
 const FeaturedProducts = () => {
+  const { addToCart } = useContext(CartContext);
   const { data, isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProductsData,
@@ -54,20 +58,24 @@ const FeaturedProducts = () => {
           768: { slidesPerView: 3 },
           1024: { slidesPerView: 5 },
         }}
-        className="mySwiper">
+        className="mySwiper"
+      >
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="bg-white mb-10 h-[95%] rounded-xl border border-[#EDEEF5] p-4 shadow hover:shadow-lg transition">
+            className="bg-white mb-10 h-[95%] rounded-xl border border-[#EDEEF5] p-4 shadow hover:shadow-lg transition"
+          >
             <div className="mb-3 relative h-[290px]">
               <div className="absolute top-[1px] left-3 bg-[#35AFA0] text-[14px] p-1 rounded-[6px] text-white">
                 {10}%
               </div>
-              <img
-                src={product.imageCover}
-                alt={product.title}
-                className="mx-auto h-24 mb-3 object-contain"
-              />
+              <NavLink to={`/productDetails/${product._id}`}>
+                <img
+                  src={product.imageCover}
+                  alt={product.title}
+                  className="mx-auto h-24 mb-3 object-contain"
+                />
+              </NavLink>
               <div className="title">
                 <h3 className="font-semibold text-sm text-gray-800">
                   {product.title}
@@ -100,8 +108,12 @@ const FeaturedProducts = () => {
                 </div>
                 <div
                   className="text-center
-                ">
-                  <button className="bg-yellow-400 hover:bg-yellow-500 text-black py-1 px-4 rounded-full text-sm">
+                "
+                >
+                  <button
+                    onClick={() => addToCart(product._id)}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black py-1 px-4 rounded-full text-sm"
+                  >
                     Add to cart
                   </button>
                 </div>

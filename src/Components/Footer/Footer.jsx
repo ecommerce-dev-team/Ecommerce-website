@@ -5,22 +5,21 @@ import TopFooter from "./TopFooter";
 import { AuthContext } from "../Context/AuthContext";
 
 const Footer = () => {
-
-  const {Token} = useContext(AuthContext);
+  const { Token } = useContext(AuthContext);
   return (
-    
     <>
+      {Token ? (
+        <>
+          <Newsletter />
 
-      {Token? <>
-
-      <Newsletter/>
-
-      <div className="bg-[#F7F8FD] ">
-        <TopFooter />
-      </div>
-      <BottomFooter />
-      
-      </> : ""}
+          <div className="bg-[#F7F8FD] ">
+            <TopFooter />
+          </div>
+          <BottomFooter />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

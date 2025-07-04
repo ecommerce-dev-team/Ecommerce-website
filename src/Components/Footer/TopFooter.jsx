@@ -16,7 +16,8 @@ const TopFooter = () => {
             return (
               <li
                 key={advantage.id}
-                className="flex items-center gap-2 md:gap-5 ">
+                className="flex items-center gap-2 md:gap-5 "
+              >
                 {<advantage.icon />}
                 <p className="text">{advantage.title}</p>
               </li>
