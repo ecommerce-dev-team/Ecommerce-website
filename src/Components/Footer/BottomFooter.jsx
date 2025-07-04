@@ -56,7 +56,7 @@ const BottomFooter = () => {
 
         <div className="flex  items-center text-  flex-wrap gap-5 justify-center  md:justify-center px-2">
           <ul className="flex gap-2 justify-center text-[12px] items-center justify-startt  md:justify-center px-2">
-          <li>Privacy Policy</li>
+            <li>Privacy Policy</li>
             <li>Terms and Conditions</li>
             <li>Cookie</li>
           </ul>
