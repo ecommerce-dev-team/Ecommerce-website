@@ -9,7 +9,7 @@ import SpecialOffers from "../SpecialOffers/SpecialOffers";
 export default function Home() {
   return (
     <>
-    <div className="container mx-auto xl:px-50 px-10 ">
+    <div className="container mx-auto  ">
       <Slideshow />
       <SpecialOffers/>
       <ProductSlider />
