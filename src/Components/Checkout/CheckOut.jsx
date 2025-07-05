@@ -1,15 +1,13 @@
 
-import axios from 'axios';
+
 import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { CartContext } from '../Context/CartProvider';
-import { toast } from 'react-toastify';
+
 
 const CheckOut = () => {
-    const { cartItems, response, cartId, headers, setNoOfCartItem,onlinePayment } = useContext(CartContext);
-    console.log(cartItems);
-    console.log(response);
-    console.log(cartId)
+    const { cartItems, response, onlinePayment } = useContext(CartContext);
+    
     const formik = useFormik({
         initialValues: {
             details: "",
@@ -105,7 +103,9 @@ const CheckOut = () => {
                 {cartItems.map((item, index) => (
                     <div key={index} className='flex items-center justify-between'>
                         <img width={64} src={item.product.imageCover} alt='product-image' className='ml-3' />
-                        <p className='flex items-center p-1'><h1 className='px-1'>{item.count}x </h1>{item.product.title}</p>
+                        <div className='flex items-center p-1'>
+                            <h1 className='px-1'>{item.count}x 
+                                </h1>{item.product.title}</div>
                         <h3>{item.price}$</h3>
 
                     </div>
