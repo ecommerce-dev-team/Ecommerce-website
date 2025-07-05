@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import arrowright from "../images/arrowright.png";
 import staricon from "../images/star.png";
 import { ShopContext } from "../Context/Context";
@@ -9,6 +9,8 @@ import Loader from "../Loader/Loader";
 export default function BestSellers() {
   const [view, setView] = useState(false);
   const { products, isLoading } = useContext(ShopContext);
+
+
 
   const Allproducts = Array.isArray(products)
     ? view

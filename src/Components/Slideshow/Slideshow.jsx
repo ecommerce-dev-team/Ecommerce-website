@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImage from "../images/encyclopedia-أشهر-متاجر-ملابس-عالمية.jpg";
+import bannerImage from "../../assets/Background.jpeg";
 import deliveryImage from "../images/banner-box2.jpg.png";
 import { Link } from "react-router-dom";
 

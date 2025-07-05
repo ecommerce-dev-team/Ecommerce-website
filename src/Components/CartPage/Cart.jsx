@@ -4,7 +4,7 @@ import ProductRating from "./ProductRating";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 import { AllCategoriesContext } from "../Context/AllCategoriesProvider";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, updateItemQuantity } = useContext(CartContext);
@@ -13,6 +13,9 @@ const Cart = () => {
   );
 
   return (
+    <div>
+
+    
     <div className="wholeCart flex flex-wrap justify-start items-center ">
       {sortedCartItems.length ? (
         sortedCartItems.map((item) => (
@@ -29,9 +32,8 @@ const Cart = () => {
             </NavLink>
             <p className="font-[500]  text-[#202435] ">{item.product.title}</p>
             <p
-              className={`text-[#00B853] font-[500] ${
-                !item.product.quantity ? "line-through text-red-700" : ""
-              }`}
+              className={`text-[#00B853] font-[500] ${!item.product.quantity ? "line-through text-red-700" : ""
+                }`}
             >
               IN STOCK
             </p>
@@ -63,12 +65,24 @@ const Cart = () => {
               </div>
             </div>
           </div>
+          
         ))
       ) : (
         <p className="my-10 m-auto text-3xl font-semibold text-[#35AFA0]">
           No Items i cart yet
         </p>
+
       )}
+       
+    </div>
+       <Link  to='/check-out'>
+      <button
+        type='submit'
+        className='px-14 py-3  text-white rounded-full f_roboto bg-[#35AFA0]'
+      >
+        PayNow
+      </button>
+      </Link>
     </div>
   );
 };

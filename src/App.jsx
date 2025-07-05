@@ -31,7 +31,9 @@ const Router = createBrowserRouter([
           <AllCategoriesProvider>
             <CartProvider>
               <WishListProvider>
-                 <Layout />
+                <Shopcontextprovider>
+                  <Layout />
+                </Shopcontextprovider>
               </WishListProvider>
             </CartProvider>
           </AllCategoriesProvider>
@@ -42,8 +44,8 @@ const Router = createBrowserRouter([
       { path: "", element: <Register /> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
-      { path: "About_Us", element: <About/> },
-      { path: "check-out", element: <CheckOut/> },
+      { path: "About_Us", element: <About /> },
+      
       {
         /* protected paths */
       },
@@ -61,7 +63,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <h1>Compare</h1>{" "}
+            {" "}
           </Guard>
         ),
       },
@@ -70,7 +72,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-           <WishList/>{" "}
+            <WishList />{" "}
           </Guard>
         ),
       },
@@ -111,11 +113,12 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: "MEATS_SEAFOOD",
+        path: "check-out",
         element: (
           <Guard>
+          <CheckOut/>
             {" "}
-            <h1> MEATS SEAFOOD </h1>{" "}
+          {" "}
           </Guard>
         ),
       },
@@ -124,7 +127,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <h1> BAKERY </h1>{" "}
+          {" "}
           </Guard>
         ),
       },
@@ -133,7 +136,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <h1> BEVERAGES </h1>{" "}
+            {" "}
           </Guard>
         ),
       },
@@ -142,7 +145,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <Blog/>{" "}
+            <Blog />{" "}
           </Guard>
         ),
       },
@@ -172,9 +175,9 @@ export default function App() {
   return (
     <>
       <AuthContextProvider>
-        <Shopcontextprovider>
-          <RouterProvider router={Router} />
-        </Shopcontextprovider>
+
+        <RouterProvider router={Router} />
+
       </AuthContextProvider>
     </>
   );
