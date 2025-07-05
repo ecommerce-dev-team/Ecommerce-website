@@ -11,6 +11,7 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartProvider";
 import { NavLink } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 const fetchProductsData = async () => {
   const response = await axios.get(`${PRODUCTS.GET_ALL}?limit=20`);
@@ -26,10 +27,8 @@ const FeaturedProducts = () => {
 
   if (isLoading)
     return (
-      <div className="flex items-center justify-center h-60 text-gray-600">
-        <FaSpinner className="w-8 h-8 animate-spin mr-2" />
-        <span>Loading products...</span>
-      </div>
+
+      <Loader/>
     );
 
   if (error)
@@ -87,7 +86,7 @@ const FeaturedProducts = () => {
                 )}
               </div>
 
-              <p className="text-xs text-green-600 font-medium mt-1">
+              <p className="text-xs text-green-600 font-medium mt-1 font-[Dosis]">
                 {product.quantity ? "IN STOCK" : "OUT OF STOCK"}
               </p>
               <div className="review flex items-center mt-2 gap-3">

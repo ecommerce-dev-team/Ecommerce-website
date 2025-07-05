@@ -17,6 +17,9 @@ import ProductDetails from "./Components/ProductDetails/ProductDetails.jsx";
 import AllProductsProvider from "./Components/Context/AllProductsProvider.jsx";
 import WholeMainShopPage from "./Components/AllProductsShop/WholeMainShopPage.jsx";
 import BrandsProvider from "./Components/Context/BrandsProvider.jsx";
+import Blog from "./Components/Blog/Blog.jsx";
+import WishListProvider from "./Components/Context/WishlistContext.jsx";
+import WishList from "./Components/Wishlist/Wishlist.jsx";
 
 const Router = createBrowserRouter([
   {
@@ -26,7 +29,9 @@ const Router = createBrowserRouter([
         <BrandsProvider>
           <AllCategoriesProvider>
             <CartProvider>
-              <Layout />
+              < WishListProvider>
+                 <Layout />
+              </WishListProvider>
             </CartProvider>
           </AllCategoriesProvider>
         </BrandsProvider>
@@ -63,7 +68,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <h1>Wishlist</h1>{" "}
+           <WishList/>{" "}
           </Guard>
         ),
       },
@@ -135,7 +140,7 @@ const Router = createBrowserRouter([
         element: (
           <Guard>
             {" "}
-            <h1> BLOG </h1>{" "}
+            <Blog/>{" "}
           </Guard>
         ),
       },

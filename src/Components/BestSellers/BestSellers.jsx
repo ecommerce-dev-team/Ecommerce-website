@@ -4,6 +4,7 @@ import staricon from "../images/star.png";
 import { ShopContext } from "../Context/Context";
 import { RotatingLines } from "react-loader-spinner";
 import { NavLink } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function BestSellers() {
   const [view, setView] = useState(false);
@@ -40,19 +41,7 @@ export default function BestSellers() {
       </div>
 
       <div>
-        {isLoading ? (
-          <RotatingLines
-            visible={true}
-            height="96"
-            width="96"
-            color="grey"
-            strokeWidth="5"
-            animationDuration="0.75"
-            ariaLabel="rotating-lines-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        ) : (
+        {isLoading ? <Loader/>: (
           <div className="grid lg:grid-cols-5  max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {products &&
               Allproducts.map((item, index) => {

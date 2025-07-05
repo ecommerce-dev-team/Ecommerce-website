@@ -10,6 +10,8 @@ import { AllProductsContext } from "../Context/AllProductsProvider";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { WishListContext } from './../Context/WishlistContext';
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -17,6 +19,7 @@ const ProductDetails = () => {
   const [selectedImg, setSelectedImg] = useState("");
   const { addToCart } = useContext(CartContext);
   const { products } = useContext(AllProductsContext);
+  const {addToWishlist,removeFromWishlist,wishlistItem,getAllWishlistItem}= useContext(WishListContext)
 
   useEffect(() => {
     const getItems = async () => {
@@ -31,6 +34,27 @@ const ProductDetails = () => {
     };
     getItems();
   }, [id]);
+
+
+useEffect(()=>{
+   getWishlist()
+},[])
+
+async function addItemToWishlist(productId) {
+  await addToWishlist(productId)
+}
+
+
+async function removeItemFromWishlist(productId) {
+  await removeFromWishlist(productId)
+}
+
+
+async function getWishlist() {
+  await getAllWishlistItem()
+}
+
+
 
   const images = displayedItem?.images || [];
   const relatedProducts = products.filter(
@@ -111,8 +135,11 @@ const ProductDetails = () => {
           </div>
 
           <div className="flex w-full items-center gap-2">
-            <div className="grow rounded-[4px] py-2.5 border border-[#DEE5EA] flex justify-center items-center gap-2 font-semibold cursor-pointer">
-              <GoHeart />
+            <div onClick={() =>wishlistItem.includes(displayedItem.id)?removeItemFromWishlist(displayedItem.id):addItemToWishlist(displayedItem.id)}  className="grow rounded-[4px] py-2.5 border border-[#DEE5EA] flex justify-center items-center gap-2 font-semibold cursor-pointer">
+              {wishlistItem.includes(displayedItem.id) ?
+                      <i className="fa-solid fa-heart text-red-500"></i> :
+                      <i className="fa-regular fa-heart text-xl text-red-500"></i>
+               }
               <span>Wishlist</span>
             </div>
             <div className="grow rounded-[4px] py-2.5 border border-[#DEE5EA] flex justify-center items-center gap-2 font-semibold cursor-pointer">

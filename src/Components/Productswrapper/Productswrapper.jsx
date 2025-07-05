@@ -7,8 +7,8 @@ export default function Productswrapper() {
     <div className="products-wrapper flex justify-between items-center flex-wrap gap-4 ">
       <div
         style={{ backgroundImage: `url(${img1})` }}
-        className="w-[370px] h-[218.63px] flex flex-col gap-3
-            justify-center pl-4 rounded-lg  mx-auto"
+        className="px-20 py-10 flex flex-col gap-3
+            justify-center pl-4 rounded-lg "
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">
@@ -24,8 +24,8 @@ export default function Productswrapper() {
 
       <div
         style={{ backgroundImage: `url(${img2})` }}
-        className="w-[370px] h-[218.63px] flex flex-col gap-3
-            justify-center pl-4 rounded-lg  mx-auto"
+        className="px-20 py-10 flex flex-col gap-3
+            justify-center pl-4 rounded-lg"
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">
@@ -41,8 +41,8 @@ export default function Productswrapper() {
 
       <div
         style={{ backgroundImage: `url(${img3})` }}
-        className="w-[370px] h-[218.63px] flex flex-col gap-3
-            justify-center pl-4 rounded-lg mx-auto"
+        className="px-20 py-10 flex flex-col gap-3
+            justify-center pl-4 rounded-lg"
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">

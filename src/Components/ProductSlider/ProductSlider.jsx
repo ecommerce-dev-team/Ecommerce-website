@@ -8,25 +8,14 @@ import { useContext } from "react";
 import { ShopContext } from "../Context/Context";
 import { RotatingLines } from "react-loader-spinner";
 import { NavLink } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function ProductSlider() {
   const { products, isLoading } = useContext(ShopContext);
 
   return (
     <div className="productslider">
-      {isLoading ? (
-        <RotatingLines
-          visible={true}
-          height="96"
-          width="96"
-          color="grey"
-          strokeWidth="5"
-          animationDuration="0.75"
-          ariaLabel="rotating-lines-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
-      ) : (
+      {isLoading ? <Loader/> : (
         <Swiper
           breakpoints={{
             380: {
