@@ -69,7 +69,7 @@ function SpecialOffers() {
                 daysInHours={false}
                  />
           </div>
-          <div className="border-2 border-[#ED174A] grid  grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="border-2 border-[#ED174A] grid  grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mx-6">
       
       {data?.data?.data.map((item) => (
             <div key={item.id} className="border-r border-[#EDEEF5] p-4 text-center flex flex-col gap-1">

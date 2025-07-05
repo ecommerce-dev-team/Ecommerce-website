@@ -6,6 +6,8 @@
 .BestSellers,
 .products-wrapper {
   font-family: "Inter", sans-serif;
+  width: 85%;
+  margin: auto;
 }
 *{
   overflow-x: hidden;
