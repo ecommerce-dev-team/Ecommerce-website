@@ -67,7 +67,7 @@ const AllProductsShop = ({ hide, setHide }) => {
             finalDisplayedBrand.map((item) => (
               <div
                 key={item._id}
-                className="border border-[#EDEEF5] w-full max-w-[213px] h-[540px] flex flex-col justify-center items-start gap-1.5 rounded-[8px] py-6 px-5"
+                className="border border-[#EDEEF5] w-full max-w-[213px] flex flex-col justify-center items-start gap-1.5 rounded-[8px] py-6 px-5"
               >
                 <NavLink to={`/productDetails/${item._id}`}>
                   <img
@@ -77,7 +77,7 @@ const AllProductsShop = ({ hide, setHide }) => {
                   />
                 </NavLink>
                 <p className="font-[500] text-[#202435] text-sm sm:text-base">
-                  {item.title}
+                  {item.title.split(" ").slice(0,2).join(" ")}
                 </p>
                 <p
                   className={`text-[#00B853] font-[500] text-sm sm:text-base ${

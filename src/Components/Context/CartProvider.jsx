@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const CartContext = createContext();
 
@@ -49,10 +50,10 @@ const CartProvider = ({ children }) => {
           headers: { token: tokenValue },
         }
       );
-      alert("Item added successfully to Cart✅");
+       toast.success(response.data.message);;
       await getCartItems();
     } catch (err) {
-      console.log(err);
+      toast.error(err.response?.data?.message);
     }
   };
   const removeFromCart = async (productId) => {
@@ -64,10 +65,10 @@ const CartProvider = ({ children }) => {
           headers: { token: tokenValue },
         }
       );
-      alert("Item deleted successfully to Cart✅");
+      toast.success(response.data.message);
       await getCartItems();
     } catch (err) {
-      console.log(err);
+     toast.error(err.response?.data.message);
     }
   };
 

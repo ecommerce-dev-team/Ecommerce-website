@@ -13,6 +13,8 @@ import Beverages from "../images/Icon (1).png";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { CartContext } from "../Context/CartProvider";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { response } = useContext(CartContext);
@@ -21,6 +23,7 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [language, setLanguage] = useState("English");
   const [currency, setCurrency] = useState("USD");
+  const [isOpen, setIsOpen] = useState(false);
   const { Token, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -53,6 +56,22 @@ const Navbar = () => {
     return null;
   }
 
+  function getCategories() {
+    return axios.get('https://ecommerce.routemisr.com/api/v1/categories');
+  }
+
+  const { data, isLoading, error, isError } = useQuery({
+    queryKey: ['categoryList'],
+    queryFn: getCategories,
+  });
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const categories = data?.data?.data || [];
+
   return (
     <>
       {Token ? (
@@ -61,7 +80,7 @@ const Navbar = () => {
             Due to current circumstances, there may be slight delays in order
             processing
           </div>
-
+        <div className="container mx-auto xl:px-50 px-10 ">
           <div className="flex flex-wrap justify-between items-center px-4 sm:px-6 py-4 border-b gap-4">
             <div className="flex justify-between items-center w-full sm:w-auto text-sm text-gray-600">
               <div className="hidden font-inter sm:flex gap-4">
@@ -173,24 +192,43 @@ const Navbar = () => {
           </div>
 
           <div className="px-4 sm:px-6 py-3 border-t text-sm font-medium text-gray-700">
-            <div className="flex justify-between items-center flex-wrap">
-              <div className="relative mb-2 sm:mb-0">
-                <button className="flex items-center gap-2 bg-teal-600 text-white px-6 py-3 rounded-full">
-                  <FaBars />
-                  <span className=" font-dosis sm:inline">ALL CATEGORIES</span>
-                  <svg
-                    className="w-3 h-3 fill-white mt-[2px]"
-                    viewBox="0 0 10 6"
-                  >
-                    <path d="M1 1l4 4 4-4" />
-                  </svg>
-                </button>
-                <span className="absolute -bottom-2 mx-5 font-dosis bg-white rounded-full text-xs text-gray-500 px-4 py-0.5 shadow">
-                  TOTAL 50 PRODUCTS
-                </span>
-              </div>
+          <div className="flex">
+      <div className="relative">
+      {/* Button */}
+      <button
+        className="flex items-center gap-1 bg-teal-600 text-white px-6 py-3 rounded-full"
+        onClick={toggleDropdown}
+      >
+        <FaBars />
+        <span className="font-[Dosis] sm:inline">ALL CATEGORIES</span>
+        <svg className="w-3 h-3 fill-white " viewBox="0 0 10 6">
+          <path d="M1 1l4 4 4-4" />
+        </svg>
+      </button>
+      <span className="text-[#71778E] bg-[#EDEEF5] border-white border px-2 py-1 rounded-full text-[10px] absolute bottom-[-10px] left-10 ">TOTAL 50 PRODUCTS</span>
 
-              <div className="hidden font-dosis text-xl md:flex gap-6 items-center ml-10">
+      {/* Dropdown List */}
+      {isOpen && (
+        <div className="absolute mt-2 w-48 bg-white shadow-lg rounded-md z-10">
+          <ul className="py-2">
+            {categories.length > 0 ? (
+              categories.map((category) => (
+                <li
+                  key={category._id}
+                  className="px-4 py-2 text-gray-800 hover:bg-teal-100 cursor-pointer"
+                >
+                  {category.name}
+                </li>
+              ))
+            ) : (
+              <li className="px-4 py-2 text-gray-500">No categories found</li>
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+
+              <div className="hidden font-[Dosis] lg:text-xl md:flex gap-6 items-center ml-10">
                 <NavLink
                   to="HOME"
                   style={({ isActive }) =>
@@ -338,6 +376,7 @@ const Navbar = () => {
               <Link to="contactUs">CONTACT</Link>
             </div>
           )}
+         </div>
         </div>
       ) : (
         <>
