@@ -4,6 +4,7 @@ import Countdown, { zeroPad } from 'react-countdown';
 import Loader from "../Loader/Loader";
 // import { WishListContext } from "../../Context/WishlistContext";
 // import { useContext, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 
 
@@ -69,12 +70,13 @@ function SpecialOffers() {
                 daysInHours={false}
                  />
           </div>
-          <div className="border-2 border-[#ED174A] grid  grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mx-6">
+          <div className="border-2 border-[#ED174A] grid md:grid-cols-2  sm:grid-cols-2  lg:grid-cols-5">
       
       {data?.data?.data.map((item) => (
+        <Link to={`/productDetails/${item._id}`}>
             <div key={item.id} className="border-r border-[#EDEEF5] p-4 text-center flex flex-col gap-1">
               <div className="relative">
-                <img src={item.imageCover} alt={item.title} className="w-50" loading="lazy" />
+                <img src={item.imageCover} alt={item.title} className="w-50 mx-auto" loading="lazy" />
                 <span className="bg-[#35AFA0] text-white rounded-sm p-1 absolute top-0 left-0">25%</span>
               </div>
               <p className="text-[#202435] font-medium">{item.title}</p>
@@ -96,6 +98,7 @@ function SpecialOffers() {
                </div>
               <p className="text-[11px]  text-[#202435]">the available products: <span className="ms-1 font-semibold text-xl text-[#233A95]">{item.quantity}</span></p>
             </div>
+            </Link>
           ))}
   </div>
 

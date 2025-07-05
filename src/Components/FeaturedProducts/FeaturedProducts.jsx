@@ -40,7 +40,7 @@ const FeaturedProducts = () => {
   const products = Array.isArray(data?.data) ? data.data : [];
 
   return (
-    <div className="max-w-screen-xl mx-auto px-5 py-10 relative FeaturedProducts">
+    <div className="max-w-screen-xl py-10 relative FeaturedProducts">
       {/* أزرار التنقل المخصصة */}
       <div className="swiper-button-prev custom-swiper-button"></div>
       <div className="swiper-button-next custom-swiper-button"></div>

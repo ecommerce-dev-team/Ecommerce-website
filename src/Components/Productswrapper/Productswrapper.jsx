@@ -4,12 +4,11 @@ import img3 from "../images/imgfour.jpg";
 
 export default function Productswrapper() {
   return (
-    <div className="  flex justify-between items-center flex-wrap gap-4  w-[80%] mx-auto  ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center  gap-4 ">
     
         <div
         style={{ backgroundImage: `url(${img1})` }}
-        className="px-20 py-10 flex flex-col gap-3
-            justify-center pl-4 rounded-lg "
+        className="px-20 py-10 flex flex-col gap-3 justify-center pl-4 rounded-lg w-full "
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">
@@ -26,7 +25,7 @@ export default function Productswrapper() {
       <div
         style={{ backgroundImage: `url(${img2})` }}
         className="px-20 py-10 flex flex-col gap-3
-            justify-center pl-4 rounded-lg"
+            justify-center pl-4 rounded-lg w-full" 
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">
@@ -43,7 +42,7 @@ export default function Productswrapper() {
       <div
         style={{ backgroundImage: `url(${img3})` }}
         className="px-20 py-10 flex flex-col gap-3
-            justify-center pl-4 rounded-lg"
+            justify-center pl-4 rounded-lg w-full"
       >
         <p className="text-[#00B853] font-bold text-sm">Weekend Discount 40%</p>
         <p className="text-2xl font-bold text-[#3E445A]">
