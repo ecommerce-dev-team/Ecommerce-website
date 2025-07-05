@@ -80,7 +80,7 @@ const Navbar = () => {
             Due to current circumstances, there may be slight delays in order
             processing
           </div>
-        <div className="container mx-auto xl:px-50 px-10 ">
+        <div className="container mx-auto  ">
           <div className="flex flex-wrap justify-between items-center px-4 sm:px-6 py-4 border-b gap-4">
             <div className="flex justify-between items-center w-full sm:w-auto text-sm text-gray-600">
               <div className="hidden font-inter sm:flex gap-4">
