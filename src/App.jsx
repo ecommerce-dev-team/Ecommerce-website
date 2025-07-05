@@ -20,7 +20,8 @@ import BrandsProvider from "./Components/Context/BrandsProvider.jsx";
 import Blog from "./Components/Blog/Blog.jsx";
 import WishListProvider from "./Components/Context/WishlistContext.jsx";
 import WishList from "./Components/Wishlist/Wishlist.jsx";
-
+import About from "./Components/About/About.jsx"
+import CheckOut from "./Components/Checkout/CheckOut.jsx";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -29,7 +30,7 @@ const Router = createBrowserRouter([
         <BrandsProvider>
           <AllCategoriesProvider>
             <CartProvider>
-              < WishListProvider>
+              <WishListProvider>
                  <Layout />
               </WishListProvider>
             </CartProvider>
@@ -41,7 +42,8 @@ const Router = createBrowserRouter([
       { path: "", element: <Register /> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
-      { path: "About_Us", element: <h1>About_Us</h1> },
+      { path: "About_Us", element: <About/> },
+      { path: "check-out", element: <CheckOut/> },
       {
         /* protected paths */
       },
