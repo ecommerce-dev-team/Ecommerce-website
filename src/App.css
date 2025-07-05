@@ -7,8 +7,196 @@
 .products-wrapper {
   font-family: "Inter", sans-serif;
 }
+*{
+  overflow-x: hidden;
+}
+.about {
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+}
 
+p {
+    color: #202435;
+}
 
+h1 {
+    font-size: 30px;
+}
+
+.about {
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.about-header {
+    background-image: url(./assets/about-header.jpg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.about-text {
+    z-index: 2;
+}
+
+.about-header p {
+    color: aliceblue;
+}
+
+.about-header h1 {
+    font-size: 60px;
+}
+
+.checkout {
+    width: 65%;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.checkout h1 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.checkout p {
+    color: gray;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.form {
+    border-right: 1px solid;
+    padding: 0px 38px;
+}
+.form input{
+  width: 100%;
+}
+input {
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    padding: 9px 11px;
+
+}
+
+.name input {
+    width: 50%;
+}
+
+.city Input {
+    width: 50%;
+}
+
+button {
+    font-weight: 700;
+    font-size: 19px;
+    color: gray;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 5px;
+
+}
+.shipping h1{
+   font-size: 14px;
+}
+.shipping p{
+    color: black;
+}
+@media (max-width:767px) {
+
+    * {
+        padding: 0;
+    }
+
+    .person {
+        display: flex;
+        flex-direction: column;
+    }
+    .form input{
+      width:70% ;
+    }
+    .about {
+        width: 85%;
+    }
+
+    .content {
+        background-color: transparent;
+        margin-top: 20px;
+        margin-left: 7px;
+        position: relative;
+    }
+
+    .last {
+        margin-top: 25px;
+    }
+
+    .checkout {
+        width: 95%;
+    }
+
+    .form {
+        border-right: none;
+
+        margin-bottom: 5px;
+        padding: 0px;
+    }
+    .shipping{
+        padding: 14px;
+    }
+}
+
+@media (min-width:768px) and (max-width:1350px) {
+    img {
+        display: block;
+        margin: auto;
+    }
+
+    .about {
+
+        width: 90%;
+    }
+
+    .person {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info {
+        padding: 0px 3px;
+    }
+
+    .last {
+        position: relative;
+        margin-top: 100px;
+        padding: 0px 21px;
+    }
+
+    .content {
+        background-color: transparent;
+        width: 100%;
+    }
+
+    .content p {
+        position: absolute;
+        margin-top: 10px;
+    }
+
+}
 .tags{
   @apply border border-[#EDEEF5] py-1.5 px-2.5 ;
 }

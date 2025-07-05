@@ -8,7 +8,7 @@ const CartProvider = ({ children }) => {
   const tokenValue = localStorage.getItem("token");
   const [cartItems, setCartItems] = useState([]);
   const [response, setResponse] = useState({});
-
+  const[cartId,setCartId]=useState()
   const getCartItems = async () => {
     if (!tokenValue) {
       return;
@@ -23,7 +23,7 @@ const CartProvider = ({ children }) => {
           },
         }
       );
-
+      setCartId(response?.data?.cartId)
       setCartItems(response?.data?.data?.products);
       setResponse(response?.data);
     } catch (err) {
@@ -94,6 +94,7 @@ const CartProvider = ({ children }) => {
       value={{
         cartItems,
         response,
+        cartId,
         addToCart,
         removeFromCart,
         updateItemQuantity,
