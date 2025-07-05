@@ -88,7 +88,21 @@ const CartProvider = ({ children }) => {
     }
     await getCartItems();
   };
-
+  async function onlinePayment(shippingAddress) {
+       
+        return await axios.post(
+                `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://github.com/ecommerce-dev-team/Ecommerce-website.git`,
+                { shippingAddress },
+                { headers:{token:tokenValue} }
+            )
+            .then((response) => {
+                return response;
+            })
+            .catch((error) => {
+                toast.error(error.response?.data?.message || "Payment failed");
+                return error;
+            });
+    }
   return (
     <CartContext.Provider
       value={{
@@ -98,6 +112,7 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateItemQuantity,
+        onlinePayment,
       }}
     >
       {children}

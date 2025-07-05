@@ -6,12 +6,10 @@ import { CartContext } from '../Context/CartProvider';
 import { toast } from 'react-toastify';
 
 const CheckOut = () => {
-    const { cartItems, response, cartId, headers, setNoOfCartItem } = useContext(CartContext);
+    const { cartItems, response, cartId, headers, setNoOfCartItem,onlinePayment } = useContext(CartContext);
     console.log(cartItems);
     console.log(response);
     console.log(cartId)
-    const token = localStorage.getItem('token')
-    console.log(token)
     const formik = useFormik({
         initialValues: {
             details: "",
@@ -23,38 +21,20 @@ const CheckOut = () => {
         },
     });
 
-    async function onlinePayment(shippingAddress) {
-        const headers = {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-        };
-
-        return await axios
-            .post(
-                `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://github.com/ecommerce-dev-team/Ecommerce-website.git`,
-                { shippingAddress },
-                { headers }
-            )
-            .then((response) => {
-                setNoOfCartItem(response.data.numOfCartItems);
-                return response;
-            })
-            .catch((error) => {
-                toast.error(error.response?.data?.message || "Payment failed");
-                return error;
-            });
-    }
+   
 
 
     async function payment(shippingAddress) {
-        {
             let response = await onlinePayment(shippingAddress)
-            // window.location.href = response.data.session.url;
             console.log(response)
+           window.location.href = response.data.session.url;
+          
         }
-    }
+    
 
     return (
-        <div className='checkout md:flex justify-center'>
+        <div className='checkout flex flex-col-reverse md:flex-row justify-center'>
+        
             <div className='form md:shrink-0'>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="text-center">
@@ -113,7 +93,7 @@ const CheckOut = () => {
                         <button
                             type='submit'
                             disabled={!(formik.isValid && formik.dirty)}
-                            className='px-14 py-3 bg-gray-200 text-white rounded-full f_roboto'
+                            className='px-14 py-3  text-white rounded-full f_roboto bg-[#35AFA0]'
                         >
                             PayNow
                         </button>
@@ -121,7 +101,7 @@ const CheckOut = () => {
                 </form>
             </div>
 
-            <div className='items flex-col item w-80'>
+            <div className='items flex-col  item w-80'>
                 {cartItems.map((item, index) => (
                     <div key={index} className='flex items-center justify-between'>
                         <img width={64} src={item.product.imageCover} alt='product-image' className='ml-3' />
@@ -131,7 +111,7 @@ const CheckOut = () => {
                     </div>
                 ))}
                 <div className='flex items-center justify-between ml-2'>
-                    <h1>Shipping</h1>
+                    <h1 className='text-[#35AFA0]'>Shipping</h1>
                     <h2>FREE</h2>
                 </div>
                 <div className='flex justify-between mt-2 ml-2'>
